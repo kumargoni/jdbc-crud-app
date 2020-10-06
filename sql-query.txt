@@ -1,0 +1,27 @@
+#create database
+CREATE DATABASE db_licpolicy;
+
+#create table
+use db_licpolicy;
+CREATE TABLE `tbl_policy` (
+    `PolicyNumber` INT NOT NULL AUTO_INCREMENT ,
+    `PolicyName` VARCHAR(50) NOT NULL,
+    `PolicyHolderName` VARCHAR(50) NOT NULL,
+    `PolicyStartDate` DATE,
+    `PremiumAmt` FLOAT,
+    `PremiumType` VARCHAR(10) NOT NULL,
+
+     PRIMARY KEY (`PolicyNumber`)
+);
+
+#Insert Query
+INSERT INTO `tbl_policy` (`PolicyName`,`PolicyHolderName`, `PolicyStartDate`,`PremiumType`, `PremiumAmt`) VALUES ("LIC","Joseph","2020-01-01","Yearly",5000)
+
+#Read Query
+SELECT * from tbl_policy WHERE PolicyNumber = 1
+
+#Update Query
+UPDATE tbl_policy SET PolicyName = "LIC Jeevan Anand", PolicyHolderName = "Joseph", PolicyStartDate = "2021-01-01",PremiumType = "Yearly", PremiumAmt = 10000 WHERE PolicyNumber = 1
+
+#Delete Query
+DELETE FROM tbl_policy WHERE PolicyNumber = 1
