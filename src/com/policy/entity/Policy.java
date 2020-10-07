@@ -1,70 +1,69 @@
 package com.policy.entity;
 
 public class Policy {
-	private int PolicyNumber;
-	private String PolicyName, PolicyHolderName, PolicyStartDate, PremiumType;
-	private float PremiumAmt;
+	private int policyNumber;
+	private String policyName, policyHolderName, policyStartDate, premiumType;
+	private float premiumAmt;
 
-	public Policy(int PolicyNumber, String PolicyName, String PolicyHolderName, String PolicyStartDate,
-			String PremiumType, float PremiumAmt) {
+	public Policy(int policyNumber, String policyName, String policyHolderName, String policyStartDate,
+			String premiumType, float premiumAmt) {
 		super();
-		this.PolicyNumber = PolicyNumber;
-		this.PolicyName = PolicyName;
-		this.PolicyHolderName = PolicyHolderName;
-		this.PolicyStartDate = PolicyStartDate;
-		this.PremiumType = PremiumType;
-		this.PremiumAmt = PremiumAmt;
+		this.policyNumber = policyNumber;
+		this.policyName = policyName;
+		this.policyHolderName = policyHolderName;
+		this.policyStartDate = policyStartDate;
+		this.premiumType = premiumType;
+		this.premiumAmt = premiumAmt;
 	}
 
 	public Policy() {
-		// TODO constructor
 	}
 
 	public int getPolicyNumber() {
-		return PolicyNumber;
+		return policyNumber;
 	}
 
-	public void setPolicyNumber(int PolicyNumber) {
-		this.PolicyNumber = PolicyNumber;
+	public void setPolicyNumber(int policyNumber) {
+		this.policyNumber = policyNumber;
 	}
 
 	public String getPolicyName() {
-		return PolicyName;
+		return policyName;
 	}
 
-	public void setPolicyName(String PolicyName) {
-		this.PolicyName = PolicyName;
+	public void setPolicyName(String policyName) {
+		this.policyName = policyName;
 	}
 
 	public String getPolicyHolderName() {
-		return PolicyHolderName;
+		return policyHolderName;
 	}
 
-	public void setPolicyHolderName(String PolicyHolderName) {
-		this.PolicyHolderName = PolicyHolderName;
+	public void setPolicyHolderName(String policyHolderName) {
+		this.policyHolderName = policyHolderName;
 	}
 
 	public String getPolicyStartDate() {
-		return PolicyStartDate;
+		return policyStartDate;
 	}
 
-	public void setPolicyStartDate(String PolicyStartDate) {
-		this.PolicyStartDate = PolicyStartDate;
+	public void setPolicyStartDate(String policyStartDate) {
+		this.policyStartDate = policyStartDate;
 	}
 
 	public String getPremiumType() {
-		return PremiumType;
+		return premiumType;
 	}
 
-	public void setPremiumType(String PremiumType) {
-		this.PremiumType = PremiumType;
+	public void setPremiumType(String premiumType) {
+		this.premiumType = premiumType;
 	}
 
 	public float getPremiumAmt() {
-		return PremiumAmt;
+		return premiumAmt;
 	}
 
-	public void setPremiumAmt(float PremiumAmt) {
-		this.PremiumAmt = PremiumAmt;
+	public void setPremiumAmt(float premiumAmt) {
+		this.premiumAmt = premiumAmt;
 	}
 }

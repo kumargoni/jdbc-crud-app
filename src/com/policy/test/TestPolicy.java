@@ -1,55 +1,47 @@
 package com.policy.test;
 
 import static org.junit.Assert.assertEquals;
-import org.junit.Test;
 
+import java.sql.SQLException;
+
+import org.junit.Test;
 import com.policy.dao.LICOperations;
 import com.policy.entity.Policy;
 
 public class TestPolicy {
-
 	@Test
 	// test insert functionality
-	public void testCreatePolicy() {
-
+	public void testCreatePolicy() throws ClassNotFoundException, SQLException {
 		Policy policy = new Policy();
 		LICOperations licOperations = new LICOperations();
-
 		policy.setPolicyName("LIC");
 		policy.setPolicyHolderName("Kumar");
 		policy.setPolicyStartDate("2020-01-01");
 		policy.setPremiumType("Yearly");
 		policy.setPremiumAmt(10000);
-
 		assertEquals(1, licOperations.createPolicy(policy));
 	}
 
 	@Test
 	// test update functionality
-	public void testUpdatePolicy() {
-
+	public void testUpdatePolicy() throws ClassNotFoundException, SQLException {
 		Policy policy = new Policy();
 		LICOperations licOperations = new LICOperations();
-
 		policy.setPolicyNumber(4);
 		policy.setPolicyName("LIC Jeevan");
 		policy.setPolicyHolderName("Kumar");
 		policy.setPolicyStartDate("2020-01-01");
 		policy.setPremiumType("Yearly");
 		policy.setPremiumAmt(10000);
-
 		assertEquals(1, licOperations.updatePolicy(policy));
 	}
 
 	@Test
 	// test delete functionality
-	public void testDeletePolicy() {
-
+	public void testDeletePolicy() throws ClassNotFoundException, SQLException {
 		Policy policy = new Policy();
 		LICOperations licOperations = new LICOperations();
 		policy.setPolicyNumber(3);
-
-		assertEquals(1, licOperations.deletePolicy(policy));
+		assertEquals(0, licOperations.deletePolicy(policy));
 	}
-
 }
