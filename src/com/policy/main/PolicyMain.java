@@ -2,11 +2,12 @@ package com.policy.main;
 
 import com.policy.dao.*;
 import com.policy.entity.*;
-
+import java.sql.SQLException;
 import java.util.Scanner;
+import org.apache.log4j.Logger;
 
 public class PolicyMain {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		LICOperations licOperations = new LICOperations();
 		Policy policy = new Policy();
 		int ch = 0;
@@ -16,6 +17,7 @@ public class PolicyMain {
 			System.out.println("2 -> Read Policy");
 			System.out.println("3 -> Update Policy");
 			System.out.println("4 -> Delete Policy");
+			// create an object of Scanner class
 			Scanner sc = new Scanner(System.in);
 			int option = sc.nextInt();
 			switch (option) {
@@ -76,9 +78,11 @@ public class PolicyMain {
 				}
 				break;
 			}
+			default:
+				System.out.println("Invalid option, press 0 to continue");
+				ch = sc.nextInt();
+				break;
 			}
-			System.out.println("Press 0 to continue");
-			ch = sc.nextInt();
 		}
 	}
 }
