@@ -1,6 +1,7 @@
 package com.policy.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
 
@@ -10,8 +11,15 @@ import com.policy.entity.Policy;
 
 public class TestPolicy {
 	@Test
+	public void testCreatePolicyConstructor() {
+		Policy policy = new Policy(0, "LIC", "Kumar", "2020-12-12", "Yearly", 899.00F);
+		LICOperations licOperations = new LICOperations();
+		assertEquals(1, licOperations.createPolicy(policy));
+	}
+
+	@Test
 	// test insert functionality
-	public void testCreatePolicy() throws ClassNotFoundException, SQLException {
+	public void testCreatePolicy() {
 		Policy policy = new Policy();
 		LICOperations licOperations = new LICOperations();
 		policy.setPolicyName("LIC");
@@ -23,8 +31,15 @@ public class TestPolicy {
 	}
 
 	@Test
+	public void testCreatePolicyWhenPolicyObjectIsNull() {
+		Policy policy = new Policy();
+		LICOperations licOperations = new LICOperations();
+		assertEquals(0, licOperations.createPolicy(policy));
+	}
+
+	@Test
 	// test update functionality
-	public void testUpdatePolicy() throws ClassNotFoundException, SQLException {
+	public void testUpdatePolicy() {
 		Policy policy = new Policy();
 		LICOperations licOperations = new LICOperations();
 		policy.setPolicyNumber(4);
@@ -38,7 +53,7 @@ public class TestPolicy {
 
 	@Test
 	// test delete functionality
-	public void testDeletePolicy() throws ClassNotFoundException, SQLException {
+	public void testDeletePolicy() {
 		Policy policy = new Policy();
 		LICOperations licOperations = new LICOperations();
 		policy.setPolicyNumber(3);
