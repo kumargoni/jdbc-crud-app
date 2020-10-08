@@ -12,10 +12,11 @@ public class LICOperations {
 	public static final String UPDATE_SQL = "UPDATE tbl_policy SET PolicyName = ?, PolicyHolderName = ?, PolicyStartDate = ?,PremiumType = ?, PremiumAmt = ? WHERE PolicyNumber = ?";
 	public static final String DELETE_SQL = "DELETE FROM tbl_policy WHERE PolicyNumber = ?";
 
-	public int createPolicy(Policy p) throws SQLException {
-		Connection connObj = DBConnection.getConnection();
+	public int createPolicy(Policy p) {
+		Connection connObj = null;
 		PreparedStatement ps = null;
 		try {
+			connObj = DBConnection.getConnection();
 			ps = connObj.prepareStatement(INSERT_SQL);
 			ps.setString(1, p.getPolicyName());
 			ps.setString(2, p.getPolicyHolderName());
@@ -39,21 +40,23 @@ public class LICOperations {
 		return 0;
 	}
 
-	public int displayPolicy(Policy p) throws SQLException {
-		Connection connObj = DBConnection.getConnection();
+	public Policy displayPolicy(Policy p) throws SQLException {
+		Connection connObj = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		Policy dbPolicy = new Policy();
 		try {
+			connObj = DBConnection.getConnection();
 			ps = connObj.prepareStatement(READ_SQL);
 			ps.setInt(1, p.getPolicyNumber());
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				System.out.println("Policy Number : " + rs.getInt("PolicyNumber") + "\nPolicy Name : "
-						+ rs.getString("PolicyName") + "\nPolicy Holder : " + rs.getString("PolicyHolderName")
-						+ "\nPolicyStartDate : " + rs.getString("PolicyStartDate") + "\nPremiumAmt : "
-						+ rs.getInt("PremiumAmt") + "\nPremiumType : " + rs.getString("PremiumType"));
-			} else {
-				System.out.println("Policy not found");
+				dbPolicy.setPolicyNumber(rs.getInt("PolicyNumber"));
+				dbPolicy.setPolicyName(rs.getString("PolicyName"));
+				dbPolicy.setPolicyHolderName(rs.getString("PolicyHolderName"));
+				dbPolicy.setPolicyStartDate(rs.getString("PolicyStartDate"));
+				dbPolicy.setPremiumType(rs.getString("PremiumType"));
+				dbPolicy.setPremiumAmt(rs.getInt("PremiumAmt"));
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -62,7 +65,9 @@ public class LICOperations {
 				if (rs != null) {
 					rs.close();
 				}
-				connObj.close();
+				if (connObj != null) {
+					connObj.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -70,13 +75,14 @@ public class LICOperations {
 				ps.close();
 			}
 		}
-		return 0;
+		return dbPolicy;
 	}
 
-	public int updatePolicy(Policy p) throws SQLException {
-		Connection connObj = DBConnection.getConnection();
+	public int updatePolicy(Policy p) {
+		Connection connObj = null;
 		PreparedStatement ps = null;
 		try {
+			connObj = DBConnection.getConnection();
 			ps = connObj.prepareStatement(UPDATE_SQL);
 			ps.setInt(6, p.getPolicyNumber());
 			ps.setString(1, p.getPolicyName());
@@ -100,10 +106,11 @@ public class LICOperations {
 		return 0;
 	}
 
-	public int deletePolicy(Policy p) throws SQLException {
-		Connection connObj = DBConnection.getConnection();
+	public int deletePolicy(Policy p) {
+		Connection connObj = null;
 		PreparedStatement ps = null;
 		try {
+			connObj = DBConnection.getConnection();
 			ps = connObj.prepareStatement(DELETE_SQL);
 			ps.setInt(1, p.getPolicyNumber());
 			return ps.executeUpdate();
@@ -121,4 +128,3 @@ public class LICOperations {
 		}
 		return 0;
 	}
-}
